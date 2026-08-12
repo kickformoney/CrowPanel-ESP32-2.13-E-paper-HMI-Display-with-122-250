@@ -2,7 +2,7 @@
 
 An enhanced OpenWeather weather station for the **Elecrow CrowPanel 2.13" ESP32-S3 E-paper Display**.
 
-This project began as Elecrow's OpenWeather demonstration and has been extensively reorganized and improved to provide a cleaner project structure, easier configuration, selectable fonts, and more maintainable source code.
+This project began as Elecrow's OpenWeather demonstration and has been extensively reorganized and improved to provide a cleaner project structure, easier configuration, selectable fonts, and more
 
 ---
 
@@ -124,9 +124,9 @@ Two font engines are available, one to draw from AdaFruit_GFX library, and one f
 * Noto Sans
 * Nirmala Text*
 
-Switch between them by selecting the desired option in `config.h`
+Switch between the two by selecting the desired option in `config.h`
 
-* Nirmala Text bitmaps must be generated using The Dot Factory before use.  Additional fonts can be added using Nirmala Text as a template
+Nirmala Text bitmaps must be generated using The Dot Factory before use.  Additional fonts can be added using Nirmala Text as a template*
 
 ---
 
