@@ -10,12 +10,11 @@ This project began as Elecrow's OpenWeather demonstration and has been extensive
 
 * Displays current weather from OpenWeatherMap
 * Supports both Imperial and Metric units
-* Compile-time font selection
+* Custom font support
 * Black & white display optimized
-* Partial e-paper refreshes to reduce power consumption
+* Optimizations to reduce power consumption
 * Simple configuration through a single `config.h`
 * Cleaner, modular source layout
-* Well-commented and refactored code
 * Designed to be easy to customize and extend
 
 ---
@@ -72,7 +71,7 @@ Fill in:
 * OpenWeatherMap API Key
 * Desired location
 * Units
-* Font selection
+* Font selection (Note: Nirmala requires additional configuration before using)
 
 ---
 
@@ -120,14 +119,14 @@ Compile and upload.
 
 # Fonts
 
-Two fonts are included.
+Two font engines are available, one to draw from AdaFruit_GFX library, and one for custom fonts
 
 * Noto Sans
-* Nirmala Text
+* Nirmala Text*
 
-Switch between them by selecting the desired option in `config.h`.
+Switch between them by selecting the desired option in `config.h`
 
-Additional fonts can be generated using The Dot Factory and added with minimal changes.
+* Nirmala Text bitmaps must be generated using The Dot Factory before use.  Additional fonts can be added using Nirmala Text as a template
 
 ---
 
@@ -136,24 +135,25 @@ Additional fonts can be generated using The Dot Factory and added with minimal c
 ```text
 example/
 │
-├── display/
-├── fonts/
-├── photos/
-├── weather/
-├── config.example.h
+├── src/
+│   ├── display/
+│   ├── fonts/
+│   ├── graphics/
+│   └── weather/
 ├── config.h
+├── timezone.h
 └── 2.13_wifi_http_openweather.ino
 ```
 
-The project has been reorganized from the original demonstration to improve readability and make future development easier.
+The project has been reorganized from the original demonstration to improve readability and make future development easier
 
 ---
 
 # Power Saving
 
-The display uses partial refreshes whenever possible to reduce flashing and improve battery life.
+The CPU can be throttled to 80MHz to reduce power consumption
 
-Wi-Fi usage has also been structured to minimize unnecessary network activity.
+Wi-Fi usage has also been structured to minimize unnecessary network activity
 
 ---
 
@@ -161,73 +161,38 @@ Wi-Fi usage has also been structured to minimize unnecessary network activity.
 
 ## `config.h` missing
 
-Copy `config.example.h` to `config.h`.
+Copy `config.example.h` to `config.h`
 
 ---
 
 ## 401 Unauthorized
 
-Your OpenWeatherMap API key is invalid or has not yet activated.
+Your OpenWeatherMap API key is invalid, or is not yet activated
 
 ---
 
 ## Wi-Fi will not connect
 
 Verify:
-
 * SSID
 * Password
 * Wi-Fi channel (if configured)
-* Optional BSSID settings
+* BSSID (if configured)
 
 ---
 
 ## Blank display
 
 Verify:
-
-* Correct board selected
-* Correct USB port
+* Correct board selected (ESP32 S3 Dev Module)
+* Correct serial port
 * Required libraries installed
-
----
-
-# Future Ideas
-
-* Battery indicator
-* Multiple weather pages
-* Weather forecast
-* Moon phase
-* Sunrise and sunset
-* Indoor temperature support
-* OTA firmware updates
-
----
-
-# Contributing
-
-Issues, suggestions, and pull requests are welcome.
-
-If you build something interesting using this project, I'd love to see it.
 
 ---
 
 # Credits
 
-This project is based on Elecrow's original OpenWeather demonstration for the CrowPanel 2.13" E-paper display.
+This project is based on Elecrow's original OpenWeather demonstration for the CrowPanel 2.13" E-paper display:
+https://github.com/Elecrow-RD/CrowPanel-ESP32-2.13-E-paper-HMI-Display-with-122-250/
 
-The original code has been substantially reorganized and extended with additional features, configuration options, code cleanup, and documentation improvements.
-
-Special thanks to:
-
-* Elecrow for the original hardware and demonstration project.
-* OpenWeatherMap for providing weather data.
-* The Arduino and ESP32 communities for their excellent libraries and documentation.
-
----
-
-# Original Hardware Documentation
-
-The following hardware information has been retained from Elecrow's original documentation for reference.
-
-*(Insert the manufacturer's hardware information here.)*
+The original code has been substantially reorganized and extended with additional features, configuration options, and code cleanup
