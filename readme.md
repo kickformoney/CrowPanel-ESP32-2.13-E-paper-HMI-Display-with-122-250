@@ -223,8 +223,7 @@ Verify:
 <img width="480" height="224" alt="garbled-text" src="https://github.com/user-attachments/assets/d9b96150-add7-4a22-a154-1d77793298e4" />
 
 <br/><br/>
-Verify:
-* That the font you are using has bitmaps included (in `FontName.cpp`)
+Validate that the font you are using has bitmaps included (in `FontName.cpp`)
 
 Example bitmap:
 
@@ -249,6 +248,6 @@ This project is based on Elecrow's original OpenWeather demonstration for the Cr
 
 https://github.com/Elecrow-RD/CrowPanel-ESP32-2.13-E-paper-HMI-Display-with-122-250/
 
-Fonts were created using The Dot Factory
+Font bitmaps were generated using The Dot Factory
 
 https://github.com/pavius/the-dot-factory/
