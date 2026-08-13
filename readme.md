@@ -44,9 +44,16 @@ This project began as Elecrow's OpenWeather demonstration and has been extensive
 ---
 
 # Prerequisites
-Follow the Quick Start instructions here, if you have not already
+Follow the Quick Start instructions [here](https://github.com/Elecrow-RD/CrowPanel-ESP32-2.13-E-paper-HMI-Display-with-122-250#5quick-start), if you have not already
 
-[CrowPanel-ESP32-2.13-E-paper-HMI-Display-with-122-250](https://github.com/Elecrow-RD/CrowPanel-ESP32-2.13-E-paper-HMI-Display-with-122-250#5quick-start)
+Clone the original repository [here](https://github.com/Elecrow-RD/CrowPanel-ESP32-2.13-E-paper-HMI-Display-with-122-250/):
+
+<img width="522" height="516" alt="image" src="https://github.com/user-attachments/assets/5a33a5f3-7a0f-485d-9612-f5be49dacd4f" />  
+
+<br/><br/>
+The required libraries can be found in this directory:
+`CrowPanel-ESP32-2.13-E-paper-HMI-Display-with-122-250/example/arduino
+/libraries/`
 
 ---
 
@@ -76,7 +83,7 @@ config.h
 
 ---
 
-## 3. Edit `config.h`
+## 3. Customize `config.h`
 
 Fill in:
 * Wi-Fi SSID
@@ -86,31 +93,7 @@ Fill in:
 * Units
 * Font selection (Note: Nirmala requires additional configuration before using)
 
----
-
-## 4. Install the required Arduino libraries
-
-Install the additional required libraries through the Arduino Library Manager
-
-Required libraries include:
-* Arduino_JSON
-* Adafruit GFX
-
----
-
-## 5. Open the project
-
-Open the `.ino` file in Arduino IDE
-
-Select:
-* Board: ESP32 S3 Dev Module
-* Correct COM Port
-
-Compile and upload
-
----
-
-# Configuration
+### Configuration
 
 | Setting                   | Description               |
 | ----------------------    | ------------------------- |
@@ -135,6 +118,18 @@ Compile and upload
 
 ---
 
+## 4. Open the project
+
+Open the `.ino` file in Arduino IDE
+
+Select:
+* Board: ESP32 S3 Dev Module
+* Correct COM Port
+
+Compile and upload
+
+---
+
 # Fonts
 
 Two font engines are available, one to draw from AdaFruit_GFX library, and one for custom fonts
@@ -147,16 +142,19 @@ Switch between the two by selecting the desired option in `config.h`
 Nirmala Text bitmaps must be generated using The Dot Factory before use.  Additional fonts can be added using Nirmala Text as a template*
 
 ### Using The Dot Factory to generate new fonts
-Clone "The Dot Factory" and open the solution in Visual Studio.  Build the application and run it
+Clone "The Dot Factory" and open the solution in Visual Studio.  Build the application and run it (or find an alternative download)
 
 Generate all characters:
 
 <img width="415" height="309" alt="TheDotFactory-generate-bitmaps" src="https://github.com/user-attachments/assets/481f591e-3439-46b1-a585-9224c576f202" />
 
-
+<br/><br/>
 Use the following settings when generating bitmaps:
 
 <img width="850" height="594" alt="TheDotFactory-settings" src="https://github.com/user-attachments/assets/b48024fa-dfab-433d-9849-4261c2e34fbe" />
+
+<br/><br/>
+For any other configuration, use the existing fonts as examples
 
 ---
 
@@ -181,7 +179,7 @@ The project has been reorganized from the original demonstration to improve read
 
 # Power Saving
 
-The CPU can be throttled to 80MHz to reduce power consumption
+The CPU can be throttled to 80MHz to reduce power consumption in config.h
 
 Wi-Fi usage has also been structured to minimize unnecessary network activity
 
@@ -220,9 +218,37 @@ Verify:
 
 ---
 
+## Garbled Text
+
+<img width="480" height="224" alt="garbled-text" src="https://github.com/user-attachments/assets/d9b96150-add7-4a22-a154-1d77793298e4" />
+
+<br/><br/>
+Verify:
+* That the font you are using has bitmaps included (in `FontName.cpp`)
+
+Example bitmap:
+
+```
+  // @11 '!' (1 pixels wide)
+	0x00, //  
+	0x80, // #
+	0x80, // #
+	0x80, // #
+	0x80, // #
+	0x80, // #
+	0x00, //  
+	0x80, // #
+	0x80, // #
+	0x00, //  
+	0x00, // 
+```
+
 # Credits
 
-This project is based on Elecrow's original OpenWeather demonstration for the CrowPanel 2.13" E-paper display:
+This project is based on Elecrow's original OpenWeather demonstration for the CrowPanel 2.13" E-paper display
+
 https://github.com/Elecrow-RD/CrowPanel-ESP32-2.13-E-paper-HMI-Display-with-122-250/
 
-The original code has been substantially reorganized and extended with additional features, configuration options, and code cleanup
+Fonts were created using The Dot Factory
+
+https://github.com/pavius/the-dot-factory/
