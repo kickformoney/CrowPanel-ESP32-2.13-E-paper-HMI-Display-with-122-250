@@ -8,7 +8,7 @@ This project began as Elecrow's OpenWeather demonstration and has been extensive
 
 ## Features
 
-* Displays current weather from OpenWeatherMap
+* Displays current weather from OpenWeatherMap, along with the time of the latest refresh
 * Supports both Imperial and Metric units
 * Custom font support with text alignment options
 * Deep-sleep support with GPIO state retention across sleep cycles
