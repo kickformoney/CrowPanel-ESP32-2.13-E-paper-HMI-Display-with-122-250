@@ -10,9 +10,9 @@ This project began as Elecrow's OpenWeather demonstration and has been extensive
 
 * Displays current weather from OpenWeatherMap
 * Supports both Imperial and Metric units
-* Custom font support
-* Black & white display optimized
-* Optimizations to reduce power consumption
+* Custom font support with text alignment options
+* Deep-sleep support with GPIO state retention across sleep cycles
+* Additional optimizations to reduce power consumption
 * Simple configuration through a single `config.h`
 * Cleaner, modular source layout
 * Designed to be easy to customize and extend
@@ -21,7 +21,15 @@ This project began as Elecrow's OpenWeather demonstration and has been extensive
 
 ## Gallery
 
-*Screenshots coming soon.*
+#### Noto Sans (included):
+<img width="800" height="387" alt="notosans-c-first" src="https://github.com/user-attachments/assets/626c7d2c-f275-42bb-a275-20196781a24f" />
+
+<img width="800" height="389" alt="noto-sans-c-only" src="https://github.com/user-attachments/assets/f496681f-fd52-49d9-9d3a-a732aebbf147" />
+
+#### Nirmala Text (requires bitmap generation)
+<img width="800" height="390" alt="nirmala-f-first" src="https://github.com/user-attachments/assets/ed5ebbfc-59f2-40bc-ab0e-80fc6ebfd4ee" />
+
+<img width="800" height="385" alt="nirmala-c-first" src="https://github.com/user-attachments/assets/5a6a255f-71d1-4ecd-9888-ee705bbba336" />
 
 ---
 
@@ -32,11 +40,17 @@ This project began as Elecrow's OpenWeather demonstration and has been extensive
 * 122 × 250 E-paper display
 * SSD1680Z / JD79661 display controller
 * 8 MB Flash
-* 8 MB PSRAM
 
 ---
 
-# Quick Start
+# Prerequisites
+Follow the Quick Start instructions here, if you have not already
+
+[CrowPanel-ESP32-2.13-E-paper-HMI-Display-with-122-250](https://github.com/Elecrow-RD/CrowPanel-ESP32-2.13-E-paper-HMI-Display-with-122-250#5quick-start)
+
+---
+
+# Getting Started
 
 ## 1. Clone the repository
 
@@ -65,7 +79,6 @@ config.h
 ## 3. Edit `config.h`
 
 Fill in:
-
 * Wi-Fi SSID
 * Wi-Fi Password
 * OpenWeatherMap API Key
@@ -77,43 +90,48 @@ Fill in:
 
 ## 4. Install the required Arduino libraries
 
-Install the required libraries through the Arduino Library Manager.
+Install the additional required libraries through the Arduino Library Manager
 
 Required libraries include:
-
-* WiFi
-* HTTPClient
 * Arduino_JSON
 * Adafruit GFX
-* EPD Library
 
 ---
 
 ## 5. Open the project
 
-Open the `.ino` file in Arduino IDE.
+Open the `.ino` file in Arduino IDE
 
 Select:
-
-* Board: ESP32-S3
+* Board: ESP32 S3 Dev Module
 * Correct COM Port
 
-Compile and upload.
+Compile and upload
 
 ---
 
 # Configuration
 
-| Setting                | Description               |
-| ---------------------- | ------------------------- |
-| `WIFI_SSID`            | Wi-Fi network name        |
-| `WIFI_PASSWORD`        | Wi-Fi password            |
-| `API_KEY`              | OpenWeatherMap API key    |
-| `CITY`                 | Weather location          |
-| `COUNTRY_CODE`         | Country identifier        |
-| `UNIT_TYPE`            | Imperial or Metric        |
-| `USE_FONT_NOTOSANS`    | Compile with Noto Sans    |
-| `USE_FONT_NIRMALATEXT` | Compile with Nirmala Text |
+| Setting                   | Description               |
+| ----------------------    | ------------------------- |
+|DEBUG                      |Set to 1 for serial debug output (115200 baud), 0 for normal/battery deployment|
+|BATTERY_POWERED            |If true, applies additional power-saving optimizations (e.g. CPU throttled to 80MHz)|
+|WIFI_SSID                  |Wi-Fi network name|
+|WIFI_PASSWORD              |Wi-Fi password|
+|USE_WIFI_BSSID             |If true, connects using a specific WIFI_CHANNEL/WIFI_BSSID to speed up reconnects and conserve power|
+|WIFI_CHANNEL               |Wi-Fi channel to use, if USE_WIFI_BSSID is true|
+|WIFI_BSSID                 |Access point's MAC address, if USE_WIFI_BSSID is true|
+|API_KEY                    |OpenWeatherMap API key|
+|CITY_NAME                  |Name displayed under "City" header, since this can be inaccurate when using GPS coordinates|
+|ZIP_CODE                   |ZIP/Postal code used to look up weather, if not using precise coordinates|
+|USE_PRECISE_COORDINATES    |If true, looks up weather using LATITUDE/LONGITUDE instead of ZIP_CODE|
+|LATITUDE                   |GPS latitude, if USE_PRECISE_COORDINATES is true|
+|LONGITUDE                  |GPS longitude, if USE_PRECISE_COORDINATES is true|
+|LOCAL_TIME_ZONE            |POSIX TZ string for local time zone/DST rules (refer to timezone.h for codes)|
+|DISPLAY_UNITS              |DISPLAY_METRIC, DISPLAY_IMPERIAL, or DISPLAY_BOTH|
+|DisplayImperialFirst       |If true and using DISPLAY_BOTH, displays Imperial units before Metric|
+|USE_FONT_NOTOSANS          |Compile with Noto Sans (default, license-friendly for distribution)|
+|USE_FONT_NIRMALATEXT       |Compile with Nirmala Text (requires Dot Factory bitmap generation first)|
 
 ---
 
@@ -127,6 +145,18 @@ Two font engines are available, one to draw from AdaFruit_GFX library, and one f
 Switch between the two by selecting the desired option in `config.h`
 
 Nirmala Text bitmaps must be generated using The Dot Factory before use.  Additional fonts can be added using Nirmala Text as a template*
+
+### Using The Dot Factory to generate new fonts
+Clone "The Dot Factory" and open the solution in Visual Studio.  Build the application and run it
+
+Generate all characters:
+
+<img width="415" height="309" alt="TheDotFactory-generate-bitmaps" src="https://github.com/user-attachments/assets/481f591e-3439-46b1-a585-9224c576f202" />
+
+
+Use the following settings when generating bitmaps:
+
+<img width="850" height="594" alt="TheDotFactory-settings" src="https://github.com/user-attachments/assets/b48024fa-dfab-433d-9849-4261c2e34fbe" />
 
 ---
 
