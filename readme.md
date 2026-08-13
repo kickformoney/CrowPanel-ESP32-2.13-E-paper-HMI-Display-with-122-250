@@ -2,7 +2,7 @@
 
 An enhanced OpenWeather weather station for the **Elecrow CrowPanel 2.13" ESP32-S3 E-paper Display**.
 
-This project began as Elecrow's OpenWeather demonstration and has been extensively reorganized and improved to provide a cleaner project structure, easier configuration, selectable fonts, and more
+This project began as Elecrow's OpenWeather demonstration and has been extensively reorganized and improved to provide a cleaner project structure, easier configuration, custom fonts, and more
 
 ---
 
